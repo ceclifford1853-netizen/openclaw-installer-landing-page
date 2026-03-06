@@ -39,67 +39,79 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
+            color: #e6f1ff;
+            font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            padding: 40px;
             margin-bottom: 40px;
         }
 
+        .glass-panel:hover {
+            transform: translateY(-10px);
+            border-color: #64ffda;
+        }
+
         h1 {
-            color: #1a73e8;
-            font-size: 2.5em;
+            color: #64ffda;
+            font-size: 3em;
             margin-bottom: 10px;
             font-weight: 700;
+            text-align: center;
         }
 
         h2 {
-            color: #1a73e8;
-            font-size: 1.8em;
-            margin: 40px 0 20px 0;
+            color: #64ffda;
+            font-size: 2em;
+            margin: 20px 0;
             font-weight: 700;
         }
 
         h3 {
-            color: #222;
-            font-size: 1.2em;
-            margin-bottom: 8px;
+            color: #ccd6f6;
+            font-size: 1.3em;
+            margin-bottom: 12px;
             font-weight: 600;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            color: #666;
+            font-size: 1.4em;
+            color: #8892b0;
             margin-bottom: 30px;
             font-weight: 500;
+            text-align: center;
         }
 
         .problem-statement {
             font-size: 1.1em;
-            color: #555;
+            color: #a8b2d1;
             margin-bottom: 30px;
-            background: #f0f7ff;
-            padding: 20px;
-            border-left: 4px solid #1a73e8;
+            background: rgba(100, 255, 218, 0.05);
+            padding: 25px;
+            border-left: 4px solid #64ffda;
             border-radius: 4px;
         }
 
         .problem-statement strong {
-            color: #1a73e8;
+            color: #64ffda;
         }
 
         /* Download Buttons */
@@ -111,200 +123,136 @@
             margin: 40px 0;
         }
 
-        .btn {
+        .cta-button {
             text-decoration: none;
-            padding: 18px 30px;
-            border-radius: 8px;
+            background: transparent;
+            border: 2px solid #64ffda;
+            color: #64ffda;
+            padding: 20px 40px;
             font-weight: bold;
-            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+            cursor: pointer;
+            transition: all 0.4s ease;
             display: inline-block;
             text-align: center;
-            min-width: 250px;
-            cursor: pointer;
-            border: 2px solid transparent;
+            min-width: 300px;
         }
 
-        .btn-main {
-            background-color: #1a73e8;
-            color: white;
-            border: 2px solid #1a73e8;
-        }
-
-        .btn-main:hover {
-            background-color: #1557b0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
-        }
-
-        .btn-sub {
-            background-color: transparent;
-            color: #555;
-            border: 2px solid #ddd;
-        }
-
-        .btn-sub:hover {
-            border-color: #999;
-            background: #f0f0f0;
-            transform: translateY(-2px);
+        .cta-button:hover {
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.6);
+            transform: translateY(-3px);
         }
 
         .version-tag {
             display: block;
-            font-size: 0.8em;
+            font-size: 0.75em;
             font-weight: normal;
-            margin-top: 5px;
+            margin-top: 8px;
             opacity: 0.8;
+            letter-spacing: 1px;
         }
 
         /* Comparison Table */
         .comparison {
             width: 100%;
             border-collapse: collapse;
-            margin: 40px 0;
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-radius: 8px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
             overflow: hidden;
         }
 
         .comparison th,
         .comparison td {
-            border: 1px solid #eee;
-            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px;
             text-align: left;
         }
 
         .comparison th {
-            background: #f8f9fa;
-            color: #1a73e8;
+            background: rgba(100, 255, 218, 0.05);
+            color: #64ffda;
             font-weight: 600;
         }
 
-        .comparison tr:nth-child(even) {
-            background: #fafafa;
+        .comparison td {
+            color: #a8b2d1;
         }
 
         .check {
-            color: #0d652d;
+            color: #64ffda;
             font-weight: bold;
             font-size: 1.2em;
+            margin-right: 8px;
         }
 
         .cross {
-            color: #d32f2f;
+            color: #f57d7d;
             font-weight: bold;
             font-size: 1.2em;
+            margin-right: 8px;
         }
 
         /* FAQ Section */
-        .faq {
-            margin-top: 50px;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
         .faq-item {
-            margin-bottom: 25px;
-            border-left: 4px solid #1a73e8;
-            padding-left: 20px;
+            margin-bottom: 30px;
+            border-left: 3px solid #64ffda;
+            padding-left: 25px;
         }
 
         .faq-item:last-child {
             margin-bottom: 0;
         }
 
-        .faq-item h3 {
-            margin-bottom: 10px;
-            color: #222;
-        }
-
         .faq-item p {
-            color: #555;
+            color: #8892b0;
             line-height: 1.7;
         }
 
         .faq-item strong {
-            color: #1a73e8;
-        }
-
-        /* Section Styling */
-        section {
-            background: #fff;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        section p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        section strong {
-            color: #1a73e8;
+            color: #64ffda;
         }
 
         footer {
             text-align: center;
-            color: #999;
+            color: #8892b0;
             font-size: 0.9em;
-            margin-top: 50px;
-            padding: 20px;
-            border-top: 1px solid #eee;
+            margin-top: 60px;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         footer a {
-            color: #1a73e8;
+            color: #64ffda;
             text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
 
         footer a:hover {
-            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.8);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-
-            h2 {
-                font-size: 1.4em;
-            }
-
-            .download-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn {
-                min-width: 100%;
-            }
-
-            .comparison th,
-            .comparison td {
-                padding: 12px;
-                font-size: 0.95em;
-            }
-
-            section {
-                padding: 20px;
-            }
-
-            .faq {
-                padding: 20px;
-            }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.6em; }
+            .container { padding: 20px 15px; }
+            .glass-panel { padding: 25px; }
+            .cta-button { min-width: 100%; padding: 15px 20px; }
+            .comparison th, .comparison td { padding: 12px; font-size: 0.9em; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <section class="hero">
+        <section class="glass-panel">
             <h1>OpenClaw One-Click Installer</h1>
             <p class="subtitle">The only 2026 solution for a zero-error Windows installation.</p>
             
@@ -314,16 +262,16 @@
             </p>
 
             <div class="download-container">
-                <a href="https://github.com/ceclifford1853-netizen/openclaw-oneclick/releases/download/v1.1.4/OpenClaw.One-Click.Installer.Setup.1.1.4.exe" class="btn btn-main" target="_blank">
-                    Download for Windows (64-bit &amp; 32-bit)
-                    <span class="version-tag">v1.1.4 &mdash; Unified Smart Installer for all systems</span>
+                <a href="https://github.com/ceclifford1853-netizen/openclaw-oneclick/releases/download/v1.1.4/OpenClaw.One-Click.Installer.Setup.1.1.4.exe" class="cta-button" target="_blank">
+                    Download for Windows
+                    <span class="version-tag">v1.1.4 &mdash; Unified Smart Installer (x64/x86)</span>
                 </a>
             </div>
         </section>
 
-        <section>
+        <section class="glass-panel">
             <h2>The Official Rescue Mission</h2>
-            <p>Most OpenClaw installs fail due to <strong>WSL2 mismatches</strong> or <strong>Node.js conflicts</strong>. We fixed that. Our "Smart Installer" handles the heavy lifting so you don't have to.</p>
+            <p style="color: #a8b2d1; margin-bottom: 20px;">Most OpenClaw installs fail due to <strong>WSL2 mismatches</strong> or <strong>Node.js conflicts</strong>. We fixed that. Our "Smart Installer" handles the heavy lifting so you don't have to.</p>
             
             <table class="comparison">
                 <thead>
@@ -353,7 +301,7 @@
             </table>
         </section>
 
-        <section class="faq">
+        <section class="glass-panel">
             <h2>OpenClaw Setup FAQ</h2>
             
             <div class="faq-item">
@@ -389,7 +337,10 @@
 
         <footer>
             <p>© 2026 OpenClaw Installer Project. Not affiliated with OpenClaw Core contributors.</p>
-            <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+            <p>
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="terms.html">Terms of Service</a>
+            </p>
         </footer>
     </div>
 
