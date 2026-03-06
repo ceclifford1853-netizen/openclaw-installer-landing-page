@@ -108,6 +108,30 @@
             text-transform: uppercase;
         }
 
+        /* Official Project Link */
+        .official-link-banner {
+            background: linear-gradient(90deg, rgba(100, 255, 218, 0.1), rgba(72, 202, 228, 0.1));
+            border: 2px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .official-link-banner a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.05em;
+            display: inline-block;
+        }
+
+        .official-link-banner a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
         /* Status Bar */
         .status-bar {
             display: flex;
@@ -323,6 +347,9 @@
                 <span class="installer-title">INSTALLER</span>
             </div>
             <div class="sub-header">One-Click Windows Installer</div>
+            <div class="official-link-banner">
+                🔗 Visit the Official <a href="https://openclaw.ai" target="_blank" rel="noopener noreferrer">OpenClaw.ai Project →</a>
+            </div>
         </div>
     </header>
 
