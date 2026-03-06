@@ -14,7 +14,8 @@
     {
       "@context": "https://schema.org/",
       "@type": "SoftwareApplication",
-      "name": "OpenClaw One-Click Installer",
+      "name": "OpenClaw Windows Installer",
+      "version": "1.1.4",
       "description": "Automated Windows installer for OpenClaw AI that handles WSL2, Node.js 22, and systemd configuration",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Windows",
@@ -238,6 +239,39 @@
             text-shadow: 0 0 8px rgba(100, 255, 218, 0.8);
         }
 
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(2, 12, 27, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar a {
+            color: #64ffda;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 20px;
+            font-size: 1.1em;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.8);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 { font-size: 2.2em; }
@@ -246,10 +280,23 @@
             .glass-panel { padding: 25px; }
             .cta-button { min-width: 100%; padding: 15px 20px; }
             .comparison th, .comparison td { padding: 12px; font-size: 0.9em; }
+            .navbar .container {
+                flex-direction: column;
+            }
+            .navbar a {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#security-tech">Security Tech</a>
+            <a href="#verification">Verification</a>
+            <a href="#faq-section">FAQ</a>
+        </div>
+    </nav>
 
     <div class="container">
         <section class="glass-panel">
@@ -269,7 +316,14 @@
             </div>
         </section>
 
-        <section class="glass-panel">
+        <section class="glass-panel" id="security-tech">
+            <h2>Securing the Gateway: The Power of Local Loopback Binding</h2>
+            <p>In the modern era of interconnected systems, the security of any application begins at its most fundamental level: the network interface. The OpenClaw Windows Installer is engineered with a security-first principle, primarily by binding its core services exclusively to the <strong>local loopback interface (127.0.0.1)</strong>. This deliberate architectural choice is not a minor detail; it is the cornerstone of the installer's security posture, effectively creating a private, impenetrable gateway for the OpenClaw AI environment.</p>
+            <p>When an application binds to <code>127.0.0.1</code>, it is instructing the operating system to only accept connections originating from the same machine. This means that no external device on the local network, nor any remote server on the internet, can directly communicate with the OpenClaw services. This prevents a wide range of common network-based attacks, including unauthorized remote access, man-in-the-middle (MITM) attacks, and network scanning for open ports. By rejecting all external connection attempts by default, the installer drastically reduces its attack surface, ensuring that the powerful capabilities of OpenClaw remain under the user's exclusive control.</p>
+            <p>This approach is fundamentally more secure than binding to a public IP address or <code>0.0.0.0</code>, which would expose the application to the network. While those configurations have their uses, they are not suitable for a local-first AI tool where user privacy and data integrity are paramount. The local loopback ensures that all communication with the OpenClaw daemon is contained within a secure, isolated sandbox on the user's own machine, providing peace of mind and a robust defense against external threats.</p>
+        </section>
+
+        <section class="glass-panel" id="verification">
             <h2>The Official Rescue Mission</h2>
             <p style="color: #a8b2d1; margin-bottom: 20px;">Most OpenClaw installs fail due to <strong>WSL2 mismatches</strong> or <strong>Node.js conflicts</strong>. We fixed that. Our "Smart Installer" handles the heavy lifting so you don't have to.</p>
             
@@ -301,37 +355,32 @@
             </table>
         </section>
 
-        <section class="glass-panel">
+        <section class="glass-panel" id="faq-section">
             <h2>OpenClaw Setup FAQ</h2>
             
             <div class="faq-item">
-                <h3>Why does OpenClaw keep failing on my PC?</h3>
-                <p>Most failures occur because <strong>systemd</strong> isn't enabled in the Linux subsystem. Our installer automatically injects the correct configuration so your AI daemon starts every time you reboot.</p>
+                <h3>How does the installer improve security over manual setup?</h3>
+                <p>Manual installations often leave security configurations to the user, who may not be aware of the risks of exposing services to the network. Our installer automates the process of binding to the local loopback and configuring the Windows Firewall, ensuring a secure-by-default setup without requiring any security expertise from the user.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Is this installer safe for beginners?</h3>
-                <p>Yes. We've pre-configured the 2026 security patches and forced the gateway to bind to <strong>localhost (127.0.0.1)</strong>, protecting your data from unauthorized external access.</p>
+                <h3>Is my data safe when using OpenClaw installed via this method?</h3>
+                <p>Yes. By binding to <code>127.0.0.1</code>, all data processed by OpenClaw remains on your local machine. No data is transmitted over the network unless you explicitly configure OpenClaw to do so, giving you complete control over your information.</p>
             </div>
 
             <div class="faq-item">
-                <h3>What's the difference between 64-bit and 32-bit?</h3>
-                <p><strong>64-bit (x64)</strong> is recommended for all modern Windows systems and offers better performance. <strong>32-bit (x86)</strong> is provided for legacy systems or specific compatibility needs.</p>
+                <h3>Can I access OpenClaw from another computer on my network?</h3>
+                <p>Not by default. The local loopback binding prevents direct access from other machines. For advanced users who require remote access, it is possible to configure a secure tunnel or proxy, but this is not the default behavior and should only be done with a clear understanding of the security implications.</p>
             </div>
 
             <div class="faq-item">
-                <h3>Do I need to uninstall anything first?</h3>
-                <p>No. Our installer automatically detects existing installations and upgrades them cleanly without data loss.</p>
+                <h3>What is a 'network listener' and why is it a risk?</h3>
+                <p>A network listener is a process that waits for incoming connections on a specific network port. If a listener is bound to a public IP address, it can be a security risk as it may be accessible to attackers. Our installer mitigates this risk by ensuring the OpenClaw listener is only accessible from the local machine.</p>
             </div>
 
             <div class="faq-item">
-                <h3>How long does installation take?</h3>
-                <p>The entire process—WSL2 setup, Node.js installation, and systemd configuration—completes in approximately 2 minutes on most systems.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>What if something goes wrong?</h3>
-                <p>Our installer includes automatic rollback functionality. If any step fails, it safely reverts to your previous state and provides detailed error logs for troubleshooting.</p>
+                <h3>Does the installer modify my system-wide network settings?</h3>
+                <p>No. The installer only configures the network settings for the OpenClaw application itself. It does not alter your system's overall network configuration, ensuring that other applications and services continue to function as expected.</p>
             </div>
         </section>
 
