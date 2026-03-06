@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot Setup | OpenClaw Post-Install Guide</title>
+    <meta name="description" content="Set up OpenClaw Telegram bot integration after installation. Learn how to configure bot tokens, enable notifications, and manage remote access securely.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #0088cc;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #1a73e8;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #222;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        section strong {
+            color: #1a73e8;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d32f2f;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        pre code {
+            color: #333;
+            background: none;
+            padding: 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            border-left: 4px solid #0088cc;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1557b0;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Telegram Bot Setup Guide</h1>
+            <p class="subtitle">Enable OpenClaw Notifications and Remote Management via Telegram</p>
+        </section>
+
+        <section>
+            <h2>What is the OpenClaw Telegram Bot?</h2>
+            <p>The OpenClaw Telegram bot allows you to receive real-time notifications about your OpenClaw daemon status, manage configurations, and access remote commands through Telegram. This guide walks you through the setup process after your initial OpenClaw installation.</p>
+            
+            <div class="info">
+                <strong>Note:</strong> Telegram bot integration is optional. Your OpenClaw installation works perfectly without it, but the bot provides convenient remote access and notifications.
+            </div>
+        </section>
+
+        <section>
+            <h2>Prerequisites</h2>
+            <p>Before setting up the Telegram bot, you need:</p>
+            <ul>
+                <li>A Telegram account (download from <code>https://telegram.org</code>)</li>
+                <li>OpenClaw already installed and running on your Windows system</li>
+                <li>Administrator access to your Windows machine</li>
+                <li>Your Telegram user ID (we'll show you how to find this)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Step 1: Create a Telegram Bot</h2>
+            
+            <div class="step">
+                <h3>1.1 Open Telegram and Find BotFather</h3>
+                <p>Open Telegram and search for <strong>@BotFather</strong>, the official Telegram bot for creating new bots.</p>
+            </div>
+            
+            <div class="step">
+                <h3>1.2 Start BotFather</h3>
+                <p>Click "Start" to begin the conversation with BotFather.</p>
+            </div>
+            
+            <div class="step">
+                <h3>1.3 Create a New Bot</h3>
+                <p>Send the command <code>/newbot</code> to BotFather.</p>
+                <p>BotFather will ask for:</p>
+                <ul>
+                    <li><strong>Bot Name:</strong> e.g., "OpenClaw Monitor"</li>
+                    <li><strong>Bot Username:</strong> e.g., "openclaw_monitor_bot" (must end with "_bot")</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3>1.4 Copy Your Bot Token</h3>
+                <p>BotFather will provide a <strong>bot token</strong> that looks like:</p>
+                <pre><code>123456789:ABCDefGhIjKlMnOpQrStUvWxYz</code></pre>
+                <p><strong>Save this token securely.</strong> You'll need it in the next step.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Step 2: Find Your Telegram User ID</h2>
+            
+            <div class="step">
+                <h3>2.1 Search for IDBot</h3>
+                <p>In Telegram, search for <strong>@userinfobot</strong> or <strong>@getidsbot</strong>.</p>
+            </div>
+            
+            <div class="step">
+                <h3>2.2 Get Your User ID</h3>
+                <p>Click "Start" and the bot will immediately reply with your user ID, which looks like:</p>
+                <pre><code>Your user ID: 123456789</code></pre>
+                <p><strong>Save this ID.</strong> You'll need it to authorize the OpenClaw bot.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Step 3: Configure OpenClaw with Your Bot Token</h2>
+            
+            <div class="step">
+                <h3>3.1 Open PowerShell as Administrator</h3>
+                <p>Right-click PowerShell and select "Run as Administrator".</p>
+            </div>
+            
+            <div class="step">
+                <h3>3.2 Set Your Bot Token</h3>
+                <pre><code>openclaw config set telegram.bot_token YOUR_BOT_TOKEN_HERE</code></pre>
+                <p>Replace <code>YOUR_BOT_TOKEN_HERE</code> with the token from BotFather.</p>
+            </div>
+            
+            <div class="step">
+                <h3>3.3 Authorize Your Telegram User ID</h3>
+                <pre><code>openclaw config set telegram.user_id YOUR_USER_ID_HERE</code></pre>
+                <p>Replace <code>YOUR_USER_ID_HERE</code> with your user ID from the IDBot.</p>
+            </div>
+            
+            <div class="step">
+                <h3>3.4 Enable Telegram Notifications</h3>
+                <pre><code>openclaw config set telegram.enabled true</code></pre>
+            </div>
+            
+            <div class="step">
+                <h3>3.5 Restart OpenClaw Daemon</h3>
+                <pre><code>openclaw restart</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Step 4: Test Your Bot Connection</h2>
+            
+            <div class="step">
+                <h3>4.1 Send a Test Message</h3>
+                <p>In Telegram, find your OpenClaw bot (the one you created with BotFather) and click "Start".</p>
+            </div>
+            
+            <div class="step">
+                <h3>4.2 Verify Connection</h3>
+                <p>The bot should respond with a welcome message confirming the connection is active.</p>
+            </div>
+            
+            <div class="step">
+                <h3>4.3 Check OpenClaw Logs</h3>
+                <pre><code>openclaw logs</code></pre>
+                <p>You should see entries confirming the Telegram bot is connected.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Available Bot Commands</h2>
+            
+            <h3>Status Commands</h3>
+            <ul>
+                <li><code>/status</code> - Check OpenClaw daemon status</li>
+                <li><code>/health</code> - Run health check</li>
+                <li><code>/logs</code> - View recent logs</li>
+                <li><code>/version</code> - Check OpenClaw version</li>
+            </ul>
+            
+            <h3>Control Commands</h3>
+            <ul>
+                <li><code>/start</code> - Start the daemon</li>
+                <li><code>/stop</code> - Stop the daemon</li>
+                <li><code>/restart</code> - Restart the daemon</li>
+                <li><code>/config</code> - View current configuration</li>
+            </ul>
+            
+            <h3>Information Commands</h3>
+            <ul>
+                <li><code>/help</code> - Display available commands</li>
+                <li><code>/about</code> - About OpenClaw</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Security Best Practices</h2>
+            
+            <div class="warning">
+                <strong>Important Security Notes:</strong>
+                <ul>
+                    <li><strong>Never share your bot token</strong> with anyone. It grants full control of your bot.</li>
+                    <li><strong>Only authorize your own Telegram user ID.</strong> The bot will only respond to authorized users.</li>
+                    <li><strong>Use strong Telegram account security.</strong> Enable two-factor authentication on your Telegram account.</li>
+                    <li><strong>Monitor bot activity.</strong> Regularly check your OpenClaw logs for unexpected commands.</li>
+                    <li><strong>Disable the bot if not in use.</strong> Set <code>telegram.enabled false</code> to disable notifications.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+            
+            <h3>Bot Not Responding</h3>
+            <p><strong>Solution:</strong></p>
+            <ul>
+                <li>Verify your bot token is correct: <code>openclaw config get telegram.bot_token</code></li>
+                <li>Ensure Telegram notifications are enabled: <code>openclaw config get telegram.enabled</code></li>
+                <li>Restart the daemon: <code>openclaw restart</code></li>
+                <li>Check logs: <code>openclaw logs</code></li>
+            </ul>
+            
+            <h3>Unauthorized User Error</h3>
+            <p><strong>Solution:</strong></p>
+            <ul>
+                <li>Verify your user ID is correct: <code>openclaw config get telegram.user_id</code></li>
+                <li>Make sure you're using the exact user ID from the IDBot (no spaces or extra characters)</li>
+                <li>Restart the daemon: <code>openclaw restart</code></li>
+            </ul>
+            
+            <h3>Commands Not Working</h3>
+            <p><strong>Solution:</strong></p>
+            <ul>
+                <li>Ensure OpenClaw daemon is running: <code>openclaw status</code></li>
+                <li>Check that your Telegram user is authorized</li>
+                <li>Verify the command syntax is correct (commands are case-sensitive)</li>
+                <li>Review logs for error messages: <code>openclaw logs</code></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Disabling the Telegram Bot</h2>
+            <p>If you want to disable Telegram notifications:</p>
+            <pre><code>openclaw config set telegram.enabled false
+openclaw restart</code></pre>
+            
+            <p>To remove the bot completely:</p>
+            <pre><code>openclaw config unset telegram.bot_token
+openclaw config unset telegram.user_id
+openclaw config unset telegram.enabled
+openclaw restart</code></pre>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is Telegram bot integration secure?</h3>
+            <p>Yes. Only authorized user IDs can control the bot, and all communication is encrypted through Telegram's secure servers.</p>
+            
+            <h3>Can multiple users control the same bot?</h3>
+            <p>The basic setup authorizes one user ID. For multiple users, you'll need to configure additional authorized IDs in your OpenClaw settings.</p>
+            
+            <h3>What if I lose my bot token?</h3>
+            <p>You can create a new bot with BotFather and update your OpenClaw configuration with the new token.</p>
+            
+            <h3>Does the bot work if OpenClaw is offline?</h3>
+            <p>No. The bot can only communicate with OpenClaw when the daemon is running. It will notify you if the daemon goes offline.</p>
+        </section>
+
+        <a href="../index.html" class="btn">← Back to Home</a>
+
+        <footer>
+            <p>© 2026 OpenClaw Installer Project. Not affiliated with OpenClaw Core contributors.</p>
+            <p><a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>

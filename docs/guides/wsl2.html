@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSL2 Performance Guide | OpenClaw Installation</title>
+    <meta name="description" content="Understand WSL2 performance benefits for OpenClaw. Learn how Windows Subsystem for Linux 2 improves daemon performance, systemd support, and overall system integration.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #1a73e8;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #1a73e8;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #222;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        section strong {
+            color: #1a73e8;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d32f2f;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        pre code {
+            color: #333;
+            background: none;
+            padding: 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1557b0;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section class="hero">
+            <h1>WSL2 Performance Guide</h1>
+            <p class="subtitle">Maximize OpenClaw Performance with Windows Subsystem for Linux 2</p>
+        </section>
+
+        <section>
+            <h2>What is WSL2?</h2>
+            <p>Windows Subsystem for Linux 2 (WSL2) is a compatibility layer that allows you to run a full Linux kernel on Windows 10 and Windows 11. Unlike WSL1, which used translation layers, WSL2 uses a lightweight Hyper-V virtual machine to run a real Linux kernel, providing near-native Linux performance.</p>
+            
+            <div class="info">
+                <strong>Note:</strong> The OpenClaw One-Click Installer automatically enables and configures WSL2 on 64-bit systems. No manual setup is required.
+            </div>
+        </section>
+
+        <section>
+            <h2>Performance Benefits of WSL2</h2>
+            
+            <h3>1. Native Linux Kernel Performance</h3>
+            <p>WSL2 runs a real Linux kernel, not a translation layer. This means OpenClaw's daemon processes run at near-native Linux speeds, with full access to Linux system calls and features.</p>
+            
+            <h3>2. Systemd Support</h3>
+            <p>WSL2 with systemd enabled allows OpenClaw to run as a proper Linux service. Your daemon automatically starts on system boot and restarts on failure, without requiring manual intervention.</p>
+            
+            <h3>3. File System Performance</h3>
+            <p>WSL2 uses a virtual ext4 file system with significantly faster I/O performance compared to WSL1. This improves OpenClaw's ability to read/write configuration files and logs.</p>
+            
+            <h3>4. Network Performance</h3>
+            <p>WSL2 has a dedicated virtual network interface, providing better network throughput and lower latency for OpenClaw's network operations.</p>
+            
+            <h3>5. Memory Efficiency</h3>
+            <p>WSL2 uses dynamic memory allocation, only consuming the resources your OpenClaw daemon actually needs. Unused memory is returned to Windows.</p>
+        </section>
+
+        <section>
+            <h2>WSL2 vs WSL1 Comparison</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>WSL1</th>
+                        <th>WSL2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kernel Type</strong></td>
+                        <td>Translation Layer</td>
+                        <td>Real Linux Kernel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance</strong></td>
+                        <td>Moderate</td>
+                        <td>Near-Native</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Systemd Support</strong></td>
+                        <td>No</td>
+                        <td>Yes (with configuration)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>File I/O</strong></td>
+                        <td>Slower</td>
+                        <td>Fast</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Network Performance</strong></td>
+                        <td>Moderate</td>
+                        <td>Excellent</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Memory Usage</strong></td>
+                        <td>Lower</td>
+                        <td>Dynamic (Usually Lower)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recommended for OpenClaw</strong></td>
+                        <td>Not Recommended</td>
+                        <td>Highly Recommended</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>System Requirements for WSL2</h2>
+            <p>WSL2 requires specific hardware and OS features:</p>
+            
+            <ul>
+                <li><strong>OS:</strong> Windows 10 (Build 19041+) or Windows 11</li>
+                <li><strong>Architecture:</strong> 64-bit processor (x64)</li>
+                <li><strong>CPU Features:</strong> Virtualization support enabled in BIOS</li>
+                <li><strong>RAM:</strong> Minimum 4 GB (8 GB recommended for OpenClaw)</li>
+                <li><strong>Disk Space:</strong> 500 MB for WSL2 + Linux distribution</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Systemd Configuration</h2>
+            <p>The OpenClaw One-Click Installer automatically configures systemd in WSL2. This enables OpenClaw to run as a proper Linux service:</p>
+            
+            <h3>Verify Systemd is Enabled</h3>
+            <pre><code>wsl -u root bash -c "systemctl status"</code></pre>
+            
+            <h3>Check OpenClaw Service Status</h3>
+            <pre><code>wsl systemctl status openclaw</code></pre>
+            
+            <h3>View Service Logs</h3>
+            <pre><code>wsl journalctl -u openclaw -f</code></pre>
+        </section>
+
+        <section>
+            <h2>Performance Optimization Tips</h2>
+            
+            <h3>1. Allocate Sufficient Resources</h3>
+            <p>Create or edit <code>%UserProfile%\.wslconfig</code> to allocate resources:</p>
+            <pre><code>[wsl2]
+memory=4GB
+processors=4
+swap=2GB</code></pre>
+            
+            <h3>2. Use Native Windows Paths Sparingly</h3>
+            <p>Accessing Windows files from WSL2 (via <code>/mnt/c</code>) is slower than using native Linux paths. Keep your OpenClaw data in the WSL2 file system when possible.</p>
+            
+            <h3>3. Monitor WSL2 Resource Usage</h3>
+            <pre><code>wsl --list --verbose</code></pre>
+            
+            <h3>4. Keep WSL2 Updated</h3>
+            <p>Regularly update the WSL2 kernel and Linux distribution:</p>
+            <pre><code>wsl --update</code></pre>
+            
+            <h3>5. Disable Unnecessary WSL2 Features</h3>
+            <p>If you don't need certain WSL2 features, disable them in <code>.wslconfig</code> to free up resources.</p>
+        </section>
+
+        <section>
+            <h2>Troubleshooting WSL2 Issues</h2>
+            
+            <h3>WSL2 Not Available</h3>
+            <p>If WSL2 is not available, ensure virtualization is enabled in your BIOS and your Windows version is up to date.</p>
+            
+            <h3>Systemd Not Starting</h3>
+            <p>The OpenClaw installer should configure this automatically. If systemd fails to start, run the installer again.</p>
+            
+            <h3>Slow Performance</h3>
+            <p>Check your resource allocation in <code>.wslconfig</code>. Increase memory and CPU if OpenClaw is running slowly.</p>
+            
+            <h3>Network Connectivity Issues</h3>
+            <p>WSL2 uses a virtual network adapter. If OpenClaw can't reach external services, check your Windows firewall and network settings.</p>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Is WSL2 required for OpenClaw?</h3>
+            <p>WSL2 is recommended for 64-bit systems but not required. 32-bit systems use native Windows, and the installer automatically adapts.</p>
+            
+            <h3>Will WSL2 slow down my computer?</h3>
+            <p>No. WSL2 uses dynamic resource allocation and only consumes resources when needed. When idle, it uses minimal system resources.</p>
+            
+            <h3>Can I switch between WSL1 and WSL2?</h3>
+            <p>Yes, but the OpenClaw installer is optimized for WSL2. We recommend staying on WSL2 for best performance.</p>
+            
+            <h3>Does WSL2 work on Windows 10?</h3>
+            <p>Yes, on Windows 10 Build 19041 and later. Windows 11 includes WSL2 by default.</p>
+        </section>
+
+        <a href="../index.html" class="btn">← Back to Home</a>
+
+        <footer>
+            <p>© 2026 OpenClaw Installer Project. Not affiliated with OpenClaw Core contributors.</p>
+            <p><a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>

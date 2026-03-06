@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Optimization | 32-bit Legacy Systems Guide</title>
+    <meta name="description" content="Optimize OpenClaw performance on 32-bit legacy systems. Learn memory management, resource allocation, and best practices for older Windows installations.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #1a73e8;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        h2 {
+            color: #1a73e8;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #222;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        section strong {
+            color: #1a73e8;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d32f2f;
+        }
+
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+
+        pre code {
+            color: #333;
+            background: none;
+            padding: 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1557b0;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Performance Optimization Guide</h1>
+            <p class="subtitle">Maximize OpenClaw Performance on 32-bit Legacy Systems</p>
+        </section>
+
+        <section>
+            <h2>Understanding 32-bit vs 64-bit Performance</h2>
+            <p>32-bit systems have inherent performance limitations compared to modern 64-bit architectures. However, with proper optimization, OpenClaw can run efficiently on legacy hardware.</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>32-bit (x86)</th>
+                        <th>64-bit (x64)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Max RAM Addressable</strong></td>
+                        <td>4 GB</td>
+                        <td>16+ TB</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Typical Performance</strong></td>
+                        <td>Moderate</td>
+                        <td>Excellent</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WSL2 Support</strong></td>
+                        <td>No</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Best Use Case</strong></td>
+                        <td>Legacy/Compatibility</td>
+                        <td>Modern Production</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="warning">
+                <strong>Note:</strong> If you have a 64-bit processor, we strongly recommend using the 64-bit installer for significantly better performance.
+            </div>
+        </section>
+
+        <section>
+            <h2>Memory Management on 32-bit Systems</h2>
+            
+            <h3>Understanding the 4 GB Limit</h3>
+            <p>32-bit systems can address a maximum of 4 GB of RAM. This is split between system memory and user applications. OpenClaw must share this space with Windows and other running programs.</p>
+            
+            <h3>Optimize Node.js Memory Usage</h3>
+            <p>Configure Node.js to use memory efficiently:</p>
+            <pre><code># Set maximum heap size for Node.js (in MB)
+set NODE_OPTIONS=--max-old-space-size=1024</code></pre>
+            
+            <h3>Monitor Memory Usage</h3>
+            <p>Use Task Manager to monitor OpenClaw's memory consumption:</p>
+            <ul>
+                <li>Press <code>Ctrl + Shift + Esc</code> to open Task Manager</li>
+                <li>Click the "Processes" tab</li>
+                <li>Look for "node.exe" or "openclaw" processes</li>
+                <li>Check the "Memory" column for current usage</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>System Optimization Tips</h2>
+            
+            <h3>1. Close Unnecessary Applications</h3>
+            <p>Before running OpenClaw, close resource-heavy programs like web browsers, video players, and other Node.js applications. This frees up memory and CPU for OpenClaw.</p>
+            
+            <h3>2. Disable Visual Effects</h3>
+            <p>Windows visual effects consume resources. Disable them for better performance:</p>
+            <ul>
+                <li>Right-click "This PC" → Properties</li>
+                <li>Click "Advanced system settings"</li>
+                <li>Go to the "Advanced" tab</li>
+                <li>Under "Performance", click "Settings"</li>
+                <li>Select "Adjust for best performance"</li>
+            </ul>
+            
+            <h3>3. Disable Startup Programs</h3>
+            <p>Reduce startup programs to free up resources:</p>
+            <ul>
+                <li>Press <code>Ctrl + Shift + Esc</code> to open Task Manager</li>
+                <li>Click the "Startup" tab</li>
+                <li>Disable unnecessary programs</li>
+                <li>Restart your computer</li>
+            </ul>
+            
+            <h3>4. Update Drivers</h3>
+            <p>Keep your system drivers updated for optimal hardware performance. Visit your motherboard manufacturer's website for the latest drivers.</p>
+            
+            <h3>5. Disable Background Services</h3>
+            <p>Some Windows services consume resources. Disable those you don't need:</p>
+            <pre><code># Open Services (services.msc) and disable:
+# - Windows Update (if not needed immediately)
+# - Superfetch
+# - Windows Search</code></pre>
+        </section>
+
+        <section>
+            <h2>OpenClaw Configuration for Legacy Systems</h2>
+            
+            <h3>Reduce Logging Verbosity</h3>
+            <p>Excessive logging consumes disk I/O and memory. Reduce log levels:</p>
+            <pre><code>openclaw config set log.level warn</code></pre>
+            
+            <h3>Disable Unused Features</h3>
+            <p>Disable OpenClaw features you don't use to reduce memory footprint:</p>
+            <pre><code>openclaw config set feature.analytics false
+openclaw config set feature.telemetry false</code></pre>
+            
+            <h3>Optimize Cache Settings</h3>
+            <p>Configure cache to use less memory:</p>
+            <pre><code>openclaw config set cache.max_size 50MB
+openclaw config set cache.ttl 300</code></pre>
+            
+            <h3>Limit Concurrent Connections</h3>
+            <p>Reduce the number of simultaneous connections to save resources:</p>
+            <pre><code>openclaw config set server.max_connections 10</code></pre>
+        </section>
+
+        <section>
+            <h2>Disk Space Optimization</h2>
+            
+            <h3>Clean Up Old Logs</h3>
+            <p>OpenClaw logs can accumulate and consume disk space. Regularly clean them:</p>
+            <pre><code>openclaw logs --clear</code></pre>
+            
+            <h3>Disk Cleanup Utility</h3>
+            <p>Use Windows Disk Cleanup to free up space:</p>
+            <ul>
+                <li>Press <code>Windows Key + R</code></li>
+                <li>Type <code>cleanmgr</code> and press Enter</li>
+                <li>Select the drive to clean</li>
+                <li>Check unnecessary files and click "OK"</li>
+            </ul>
+            
+            <h3>Defragmentation</h3>
+            <p>Defragment your hard drive to improve I/O performance (especially important on older systems):</p>
+            <ul>
+                <li>Press <code>Windows Key + R</code></li>
+                <li>Type <code>dfrgui.exe</code> and press Enter</li>
+                <li>Select your drive and click "Optimize"</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Network Optimization</h2>
+            
+            <h3>Reduce Network Overhead</h3>
+            <p>Optimize network settings for better performance:</p>
+            <pre><code>openclaw config set network.tcp_nodelay true
+openclaw config set network.buffer_size 64KB</code></pre>
+            
+            <h3>Use Wired Connection</h3>
+            <p>If possible, use a wired Ethernet connection instead of Wi-Fi for more stable and faster network performance.</p>
+            
+            <h3>Disable IPv6</h3>
+            <p>If you don't use IPv6, disable it to reduce network overhead:</p>
+            <ul>
+                <li>Open Network Settings</li>
+                <li>Click "Change adapter options"</li>
+                <li>Right-click your connection and select "Properties"</li>
+                <li>Uncheck "Internet Protocol Version 6 (TCP/IPv6)"</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Monitoring and Troubleshooting</h2>
+            
+            <h3>Check System Performance</h3>
+            <p>Use Performance Monitor to identify bottlenecks:</p>
+            <ul>
+                <li>Press <code>Windows Key + R</code></li>
+                <li>Type <code>perfmon</code> and press Enter</li>
+                <li>Monitor CPU, Memory, and Disk usage</li>
+            </ul>
+            
+            <h3>Identify Resource Hogs</h3>
+            <p>Use Task Manager to find processes consuming excessive resources:</p>
+            <pre><code>tasklist /v | sort /+65</code></pre>
+            
+            <h3>Check OpenClaw Performance</h3>
+            <pre><code>openclaw doctor
+openclaw status
+openclaw logs</code></pre>
+        </section>
+
+        <section>
+            <h2>Upgrade Path</h2>
+            <p>If performance is still insufficient on your 32-bit system, consider these options:</p>
+            
+            <h3>Hardware Upgrades</h3>
+            <ul>
+                <li><strong>Add RAM:</strong> Upgrade to maximum supported RAM (usually 4 GB for 32-bit systems)</li>
+                <li><strong>Upgrade to SSD:</strong> Replace mechanical hard drive with SSD for faster I/O</li>
+                <li><strong>Upgrade CPU:</strong> If your motherboard supports it, upgrade to a faster processor</li>
+            </ul>
+            
+            <h3>Software Upgrade</h3>
+            <ul>
+                <li><strong>Upgrade to 64-bit:</strong> If your processor supports it, install a 64-bit version of Windows</li>
+                <li><strong>Use 64-bit OpenClaw Installer:</strong> Switch to the 64-bit installer for significantly better performance</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            
+            <h3>Why is OpenClaw slow on my 32-bit system?</h3>
+            <p>32-bit systems have inherent limitations. Optimize using the tips above, or consider upgrading to 64-bit if your hardware supports it.</p>
+            
+            <h3>Can I run multiple OpenClaw instances on 32-bit?</h3>
+            <p>Not recommended due to memory constraints. Stick to a single instance for best performance.</p>
+            
+            <h3>What's the minimum RAM for 32-bit OpenClaw?</h3>
+            <p>4 GB minimum, but 8 GB is recommended if your system supports it. However, 32-bit systems can only address 4 GB total.</p>
+            
+            <h3>Should I upgrade to 64-bit?</h3>
+            <p>If your processor supports 64-bit, upgrading to 64-bit Windows and the 64-bit OpenClaw installer will provide significant performance improvements.</p>
+        </section>
+
+        <a href="../index.html" class="btn">← Back to Home</a>
+
+        <footer>
+            <p>© 2026 OpenClaw Installer Project. Not affiliated with OpenClaw Core contributors.</p>
+            <p><a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>
