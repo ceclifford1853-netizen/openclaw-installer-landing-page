@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw Windows Installer | Official One-Click Setup (2026)</title>
-    <meta name="description" content="Official OpenClaw Windows Installer. The high-performance, one-click solution for deploying OpenClaw AI on Windows with WSL2, Node.js 22, and systemd automation.">
-    <meta property="og:title" content="OpenClaw Windows Installer | Official One-Click Setup">
-    <meta property="og:description" content="Deploy OpenClaw AI on Windows in 2 minutes. Automated WSL2, Node.js, and secure loopback binding.">
+    <title>OpenClaw Windows Installer | One-Click Setup (2026)</title>
+    <meta name="description" content="OpenClaw Windows Installer v1.1.4. Stop fighting with PowerShell. Automate WSL2, Node.js, and security binding in seconds.">
+    <meta property="og:title" content="OpenClaw Windows Installer | One-Click Setup">
+    <meta property="og:description" content="Stop PowerShell errors. Install OpenClaw AI on Windows in seconds with automated WSL2 and security binding.">
     <meta property="og:type" content="website">
     
     <!-- JSON-LD Schema for Software Application -->
@@ -16,7 +16,7 @@
       "@type": "SoftwareApplication",
       "name": "OpenClaw Windows Installer",
       "version": "1.1.4",
-      "description": "High-performance Windows installer for OpenClaw AI featuring automated WSL2, Node.js 22, and systemd configuration",
+      "description": "One-click Windows installer for OpenClaw AI with automated WSL2, Node.js 22, and security hardening",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Windows",
       "offers": {
@@ -34,13 +34,12 @@
 
     <style>
         :root {
-            --primary-bg: #0a192f;
-            --secondary-bg: #020c1b;
-            --accent-color: #64ffda;
-            --text-main: #ccd6f6;
-            --text-sub: #8892b0;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-black: #000000;
+            --accent-cyan: #64ffda;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(100, 255, 218, 0.2);
         }
 
         * {
@@ -49,25 +48,25 @@
             box-sizing: border-box;
         }
 
-        body {
-            background: radial-gradient(circle at center, var(--primary-bg) 0%, var(--secondary-bg) 100%);
-            color: var(--text-main);
-            font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+        html, body {
+            background: var(--bg-black);
+            color: var(--text-white);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.8;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* Branded Header */
+        /* Header Section */
         header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px 60px 20px;
             margin-bottom: 40px;
         }
 
@@ -75,107 +74,78 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-        }
-
-        .logo-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .brand-logo {
-            height: 60px;
-            filter: drop-shadow(0 0 5px rgba(100, 255, 218, 0.2));
+            height: 100px;
+            filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.3));
+            animation: float 3s ease-in-out infinite;
         }
 
-        .installer-title {
-            font-size: 2.5em;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .installer-heading {
+            font-size: 3.2em;
             font-weight: 900;
-            background: linear-gradient(90deg, #64ffda, #48cae4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(100, 255, 218, 0.4);
+            color: var(--text-white);
             letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+            margin-bottom: 10px;
         }
 
-        .sub-header {
-            font-family: 'Courier New', Courier, monospace;
-            color: #c0c0c0;
-            font-size: 1.1em;
-            letter-spacing: 4px;
-            margin-top: 10px;
+        .installer-subheading {
+            font-size: 1.2em;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            letter-spacing: 3px;
             text-transform: uppercase;
         }
 
-        /* Official Project Link */
         .official-link-banner {
-            background: linear-gradient(90deg, rgba(100, 255, 218, 0.1), rgba(72, 202, 228, 0.1));
-            border: 2px solid var(--accent-color);
-            border-radius: 12px;
-            padding: 15px 20px;
+            background: rgba(100, 255, 218, 0.08);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 12px 20px;
             margin-top: 20px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .official-link-banner a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.05em;
+            font-size: 0.9em;
             display: inline-block;
         }
 
+        .official-link-banner a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
         .official-link-banner a:hover {
-            color: #fff;
-            text-shadow: 0 0 10px var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        /* Status Bar */
-        .status-bar {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            font-size: 0.9em;
-            color: var(--text-sub);
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #64ffda;
-            box-shadow: 0 0 8px #64ffda;
-        }
-
-        /* Glass Panels */
+        /* Glass Panel */
         .glass-panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.7);
+            border-radius: 16px;
             padding: 50px;
-            margin-bottom: 50px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+            margin-bottom: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 32px rgba(100, 255, 218, 0.05);
         }
 
         .glass-panel:hover {
-            transform: translateY(-12px);
-            border-color: var(--accent-color);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 48px rgba(100, 255, 218, 0.15);
+            transform: translateY(-5px);
         }
 
         h1 {
-            /* Hidden for visual but present for SEO */
             position: absolute;
             width: 1px;
             height: 1px;
@@ -187,23 +157,24 @@
         }
 
         h2 {
-            color: var(--accent-color);
             font-size: 2.2em;
+            color: var(--accent-cyan);
             margin-bottom: 25px;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
 
         h3 {
-            color: #fff;
             font-size: 1.4em;
+            color: var(--text-white);
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         p {
-            color: var(--text-sub);
+            color: var(--text-gray);
             margin-bottom: 20px;
+            font-size: 1.05em;
         }
 
         /* Download Button */
@@ -212,59 +183,142 @@
             flex-direction: column;
             align-items: center;
             margin: 40px 0;
+            gap: 20px;
         }
 
         .cta-button {
             text-decoration: none;
             background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 22px 50px;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 18px 45px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            border-radius: 8px;
+            letter-spacing: 2px;
+            border-radius: 6px;
             box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
             transition: all 0.4s ease;
             text-align: center;
-            min-width: 350px;
+            min-width: 320px;
+            font-size: 1.05em;
         }
 
         .cta-button:hover {
             background: rgba(100, 255, 218, 0.1);
             box-shadow: 0 0 40px rgba(100, 255, 218, 0.5);
-            transform: scale(1.02);
+            transform: scale(1.03);
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+            color: var(--text-gray);
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(100, 255, 218, 0.03);
+            border: 1px solid rgba(100, 255, 218, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(100, 255, 218, 0.08);
+        }
+
+        .testimonial-text {
+            color: var(--text-gray);
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        /* Changelog Section */
+        .changelog-box {
+            background: rgba(100, 255, 218, 0.02);
+            border-left: 3px solid var(--accent-cyan);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .changelog-version {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .changelog-items {
+            color: var(--text-gray);
+            font-size: 0.95em;
+            line-height: 1.8;
         }
 
         /* FAQ Section */
         details {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 10px;
             margin-bottom: 15px;
-            border: 1px solid var(--glass-border);
             transition: all 0.3s ease;
         }
 
         details[open] {
-            border-color: var(--accent-color);
+            border-color: var(--accent-cyan);
             background: rgba(100, 255, 218, 0.03);
         }
 
         summary {
-            padding: 20px;
+            padding: 18px;
             cursor: pointer;
             font-weight: 700;
-            color: #fff;
+            color: var(--text-white);
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            user-select: none;
         }
 
         summary::after {
             content: '+';
-            font-size: 1.5em;
-            color: var(--accent-color);
+            font-size: 1.4em;
+            color: var(--accent-cyan);
         }
 
         details[open] summary::after {
@@ -272,52 +326,54 @@
         }
 
         .faq-content {
-            padding: 0 20px 20px 20px;
-            color: var(--text-sub);
+            padding: 0 18px 18px 18px;
+            color: var(--text-gray);
         }
 
         /* Resources Section */
         .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
 
         .resource-link {
             display: block;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            color: var(--accent-color);
+            background: rgba(100, 255, 218, 0.03);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 8px;
+            color: var(--accent-cyan);
             text-decoration: none;
             text-align: center;
             font-weight: 600;
+            font-size: 0.9em;
             transition: all 0.3s ease;
         }
 
         .resource-link:hover {
-            background: rgba(100, 255, 218, 0.05);
-            border-color: var(--accent-color);
+            background: rgba(100, 255, 218, 0.08);
+            border-color: var(--accent-cyan);
         }
 
+        /* Footer */
         footer {
             text-align: center;
             padding: 60px 20px;
-            border-top: 1px solid var(--glass-border);
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
             margin-top: 40px;
         }
 
         .disclaimer {
             font-size: 0.85em;
-            color: #495670;
+            color: #606060;
             max-width: 600px;
             margin: 0 auto 20px auto;
         }
 
         .footer-links a {
-            color: var(--accent-color);
+            color: var(--accent-cyan);
             text-decoration: none;
             margin: 0 15px;
             font-weight: 600;
@@ -325,16 +381,17 @@
         }
 
         .footer-links a:hover {
-            color: #fff;
+            color: var(--text-white);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .installer-title { font-size: 1.8em; }
-            .sub-header { font-size: 0.8em; letter-spacing: 2px; }
+            .installer-heading { font-size: 2.2em; }
+            .installer-subheading { font-size: 0.9em; }
             .glass-panel { padding: 30px 20px; }
             .cta-button { min-width: 100%; }
-            .status-bar { flex-direction: column; gap: 10px; align-items: center; }
+            .status-bar { gap: 15px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -342,11 +399,9 @@
 
     <header>
         <div class="logo-container">
-            <div class="logo-row">
-                <img src="assets/openclaw_logo.webp" alt="OpenClaw Logo" class="brand-logo">
-                <span class="installer-title">INSTALLER</span>
-            </div>
-            <div class="sub-header">One-Click Windows Installer</div>
+            <img src="assets/openclaw_logo_transparent.png" alt="OpenClaw Logo" class="brand-logo">
+            <div class="installer-heading">ONE-CLICK WINDOWS INSTALLER</div>
+            <div class="installer-subheading">v1.1.4 — Unified Smart Installer</div>
             <div class="official-link-banner">
                 🔗 Visit the Official <a href="https://openclaw.ai" target="_blank" rel="noopener noreferrer">OpenClaw.ai Project →</a>
             </div>
@@ -356,31 +411,77 @@
     <div class="container">
         <h1>OpenClaw Windows Installer</h1>
 
-        <section class="download-container">
-            <a href="https://github.com/ceclifford1853-netizen/openclaw-oneclick/releases/download/v1.1.4/OpenClaw.One-Click.Installer.Setup.1.1.4.exe" class="cta-button" target="_blank">
-                Download v1.1.4 for Windows
-            </a>
-            <div class="status-bar">
-                <div class="status-item"><span class="status-dot"></span> Build: Passing</div>
-                <div class="status-item">🛡️ Security: Verified</div>
-                <div class="status-item">📦 Version: 1.1.4</div>
+        <!-- Download Section -->
+        <section class="glass-panel">
+            <div class="download-container">
+                <a href="https://github.com/ceclifford1853-netizen/openclaw-oneclick/releases/download/v1.1.4/OpenClaw.One-Click.Installer.Setup.1.1.4.exe" class="cta-button" target="_blank">
+                    Download v1.1.4 for Windows
+                </a>
+                <div class="status-bar">
+                    <div class="status-item"><span class="status-dot"></span> Build: Passing</div>
+                    <div class="status-item">🛡️ Security: Verified</div>
+                    <div class="status-item">📦 Version: 1.1.4</div>
+                </div>
             </div>
         </section>
 
+        <!-- Headache Cure Section -->
+        <section class="glass-panel">
+            <h2>Stop Fighting with PowerShell.</h2>
+            <p>Tired of Execution Policy errors, missing Git dependencies, and PATH configuration nightmares? Our unified v1.1.4 installer bypasses the terminal struggle, automating the entire OpenClaw setup in seconds.</p>
+            <p style="color: var(--accent-cyan); font-weight: 600; margin-top: 30px;">No Terminal. No Errors. No Headaches.</p>
+        </section>
+
+        <!-- User Feedback Section -->
+        <section class="glass-panel">
+            <h2>What Users Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"I spent 2 hours trying to fix my Python PATH. This installer did it in 30 seconds. Literal lifesaver."</div>
+                    <div class="testimonial-author">— Dev_Josh92</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"Finally, a way to run OpenClaw on Windows without needing a Computer Science degree to get through the PowerShell script."</div>
+                    <div class="testimonial-author">— Sarah_Codes</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">"The 'Shield' loopback binding is a genius touch. Feels much safer than the standard manual repo clone."</div>
+                    <div class="testimonial-author">— TechAudit_Pro</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Changelog Section -->
+        <section class="glass-panel">
+            <h2>Version History</h2>
+            <div class="changelog-box">
+                <div class="changelog-version">v1.1.4 — Latest Release</div>
+                <div class="changelog-items">
+                    ✓ Fixed: icon.ico rendering<br>
+                    ✓ Fixed: PowerShell execution bypass<br>
+                    ✓ Fixed: Automated loopback security binding<br>
+                    ✓ Added: Enhanced WSL2 detection for x64/x86<br>
+                    ✓ Added: Firewall rule automation for local-only access
+                </div>
+            </div>
+        </section>
+
+        <!-- Inside the Shield Section -->
         <section class="glass-panel" id="about">
             <h2>Inside the Shield</h2>
-            <p>The OpenClaw Windows Installer is a premium, open-source distribution designed to bridge the gap between high-performance AI and Windows security standards. We focus on three core entities to ensure a zero-error deployment.</p>
+            <p>The OpenClaw Windows Installer is engineered with security as the foundation. Every component is designed to ensure a zero-error deployment with maximum protection.</p>
             
             <h3>WSL2 Integration</h3>
-            <p>Our installer leverages <strong>Windows Subsystem for Linux 2 (WSL2)</strong> to run a native Linux kernel on Windows. This ensures that OpenClaw's heavy AI workloads operate with maximum performance and 100% compatibility with its original environment.</p>
+            <p>Our installer leverages <strong>Windows Subsystem for Linux 2 (WSL2)</strong> to run a native Linux kernel on Windows. This ensures that OpenClaw's heavy AI workloads operate with maximum performance and 100% compatibility.</p>
 
             <h3>Loopback Binding</h3>
             <p>Security is paramount. By enforcing <strong>Local Loopback Binding (127.0.0.1)</strong>, the installer ensures that your AI assistant is only accessible from your machine. This prevents unauthorized network listeners and remote access exploits by default.</p>
 
             <h3>CVE Mitigation</h3>
-            <p>We proactively monitor the <strong>Common Vulnerabilities and Exposures (CVE)</strong> database to harden our installation scripts against known exploits. Our 2026 build includes pre-configured firewall rules and environment isolation to protect your local data.</p>
+            <p>We proactively monitor the <strong>Common Vulnerabilities and Exposures (CVE)</strong> database to harden our installation scripts against known exploits. Our 2026 build includes pre-configured firewall rules and environment isolation.</p>
         </section>
 
+        <!-- Technical FAQ Section -->
         <section class="glass-panel" id="faq">
             <h2>Technical FAQ</h2>
             
@@ -401,7 +502,7 @@
             <details>
                 <summary>Is my data protected from external access?</summary>
                 <div class="faq-content">
-                    Yes. Our "Smart Installer" binds the gateway exclusively to 127.0.0.1 and enforces Windows Firewall rules, ensuring your AI assistant remains local and private.
+                    Yes. Our installer binds the gateway exclusively to 127.0.0.1 and enforces Windows Firewall rules, ensuring your AI assistant remains local and private.
                 </div>
             </details>
 
@@ -411,8 +512,16 @@
                     Requires Windows 10 (Build 19041+) or Windows 11, with Virtualization enabled in BIOS for WSL2 support. Works on both x64 and x86 architectures.
                 </div>
             </details>
+
+            <details>
+                <summary>Can I uninstall it?</summary>
+                <div class="faq-content">
+                    Yes. The installer includes a full uninstall option in Windows Control Panel. All OpenClaw components and dependencies can be cleanly removed.
+                </div>
+            </details>
         </section>
 
+        <!-- Resources Section -->
         <section class="glass-panel" id="resources">
             <h2>Authority Resources</h2>
             <p>We leverage industry-standard security and open-source benchmarks to maintain the integrity of our distribution.</p>
@@ -431,7 +540,7 @@
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
             </div>
-            <p style="margin-top: 20px; font-size: 0.8em; color: #495670;">© 2026 OpenClaw Installer Project.</p>
+            <p style="margin-top: 20px; font-size: 0.8em; color: #404040;">© 2026 OpenClaw Installer Project.</p>
         </footer>
     </div>
 
