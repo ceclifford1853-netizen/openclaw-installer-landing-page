@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 'Clean-Slate' Strategy for AI Deployment | OpenClaw Guide</title>
+    <meta name="description" content="Learn how the 'Clean-Slate' strategy bypasses PowerShell Execution Policy errors safely for AI deployments.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "The 'Clean-Slate' Strategy for AI Deployment",
+      "description": "A technical guide on bypassing PowerShell Execution Policy errors safely for AI deployments.",
+      "author": {
+        "@type": "Organization",
+        "name": "OpenClaw Independent Auditors"
+      }
+    }
+    </script>
+    <style>
+        :root { --bg: #0a0a0a; --accent: #64ffda; --text: #e0e0e0; --glass: rgba(255,255,255,0.05); }
+        body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .tldr { background: rgba(100, 255, 218, 0.1); border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        h1 { color: var(--accent); font-size: 2.5rem; margin-bottom: 1rem; }
+        h2 { color: var(--accent); margin-top: 2rem; }
+        .back-link { color: var(--accent); text-decoration: none; display: inline-block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <div class="tldr">
+            <strong>TL;DR / Key Takeaway:</strong> The 'Clean-Slate' strategy bypasses <strong>PowerShell Execution Policy errors</strong> safely by using scoped execution. This ensures your AI deployment succeeds even on restricted Windows environments without compromising system-wide security.
+        </div>
+        <h1>The 'Clean-Slate' Strategy for AI Deployment</h1>
+        <p>Windows security policies often block the scripts required to install AI agents. The 'Clean-Slate' strategy provides a safe, reliable workaround.</p>
+        
+        <h2>1. Bypassing Execution Policy Errors</h2>
+        <p>Many users encounter the "Scripts are disabled on this system" error when trying to install OpenClaw. Instead of permanently lowering your system's security, the 'Clean-Slate' strategy uses a <strong>Bypass</strong> flag for the specific installation session only.</p>
+
+        <h2>2. Scoped Execution</h2>
+        <p>By running scripts with the <code>-ExecutionPolicy Bypass -Scope Process</code> flag, we ensure that the installer has the permissions it needs, but those permissions expire as soon as the installer closes. This is the "Clean-Slate" approach: no permanent changes to your system's security posture.</p>
+
+        <h2>3. Safe AI Deployment</h2>
+        <p>This strategy is essential for deploying AI agents on corporate or managed Windows machines where administrative access is limited. It allows for a professional, error-free installation experience every time.</p>
+    </div>
+</body>
+</html>

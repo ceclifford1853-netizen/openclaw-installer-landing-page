@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding the 'No-VPN' WebSocket Tunnel | OpenClaw Guide</title>
+    <meta name="description" content="Learn how the 'No-VPN' WebSocket tunnel provides secure, outbound-only communication for AI agents without port forwarding.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Understanding the 'No-VPN' WebSocket Tunnel",
+      "description": "A technical guide on outbound-only security and port-forwarding bypass for AI agents.",
+      "author": {
+        "@type": "Organization",
+        "name": "OpenClaw Independent Auditors"
+      }
+    }
+    </script>
+    <style>
+        :root { --bg: #0a0a0a; --accent: #64ffda; --text: #e0e0e0; --glass: rgba(255,255,255,0.05); }
+        body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .tldr { background: rgba(100, 255, 218, 0.1); border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        h1 { color: var(--accent); font-size: 2.5rem; margin-bottom: 1rem; }
+        h2 { color: var(--accent); margin-top: 2rem; }
+        .back-link { color: var(--accent); text-decoration: none; display: inline-block; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Portal</a>
+        <div class="tldr">
+            <strong>TL;DR / Key Takeaway:</strong> The 'No-VPN' WebSocket tunnel uses <strong>outbound-only security</strong> to bypass port-forwarding requirements. This ensures your AI agent remains unreachable from the public internet while maintaining a secure, encrypted link to your control interface.
+        </div>
+        <h1>Understanding the 'No-VPN' WebSocket Tunnel</h1>
+        <p>Traditional remote access requires complex VPN setups or dangerous port forwarding. The OpenClaw 'No-VPN' strategy uses a modern WebSocket approach to solve this.</p>
+        
+        <h2>1. Outbound-Only Security</h2>
+        <p>Unlike a web server that listens for incoming connections (a major security risk), the OpenClaw tunnel initiates an <strong>outbound</strong> connection to a secure relay. Because the connection starts from <em>inside</em> your network, your firewall allows it by default, and no ports need to be opened to the world.</p>
+
+        <h2>2. Port-Forwarding Bypass</h2>
+        <p>By using persistent WebSocket connections, the AI agent maintains a two-way communication channel without needing a static IP or dynamic DNS. This makes it compatible with CGNAT (common in mobile and fiber networks) where traditional port forwarding is impossible.</p>
+
+        <h2>3. End-to-End Encryption</h2>
+        <p>All traffic through the tunnel is wrapped in TLS 1.3 encryption. Even though the data passes through a relay, the content remains private and tamper-proof, ensuring your AI's internal state and your personal data are never exposed.</p>
+    </div>
+</body>
+</html>
