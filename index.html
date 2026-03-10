@@ -90,6 +90,10 @@
         .security-badge { display: inline-block; border: 1px solid var(--accent-cyan); padding: 5px 15px; border-radius: 20px; color: var(--accent-cyan); font-size: 0.8rem; margin-bottom: 20px; text-decoration: none; }
         .footer-links a { color: var(--text-gray); text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
         .footer-links a:hover { color: var(--accent-cyan); }
+        .audit-status { background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.05)); border: 2px solid var(--accent-cyan); padding: 25px; border-radius: 16px; text-align: center; }
+        .audit-status h3 { color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.3rem; }
+        .status-line { color: var(--text-white); font-weight: 700; margin-bottom: 8px; }
+        .status-date { color: var(--text-gray); font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -164,6 +168,14 @@
                 <h3>About Our Mission</h3>
                 <p>We are independent researchers dedicated to auditing and optimizing OpenClaw distributions for Windows. Our goal is to provide the most secure, high-performance deployment methods for AI agents.</p>
             </div>
+            <div class="bento-item audit-status">
+                <h3>🔍 Live Audit Status</h3>
+                <div class="status-line">Status: v1.1.8 Audited & Verified</div>
+                <div class="status-date">Last Check: March 10, 2026</div>
+            </div>
+        </div>
+
+        <div class="bento-grid">
             <div class="bento-item bento-large">
                 <h3>Verified Security</h3>
                 <p>Every build linked on this portal undergoes a rigorous SHA-256 integrity check and VirusTotal multi-engine scan. We prioritize your system's security above all else.</p>
